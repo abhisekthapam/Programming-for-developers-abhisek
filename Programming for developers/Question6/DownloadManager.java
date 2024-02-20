@@ -15,18 +15,18 @@ public class DownloadManager extends JFrame implements Observer {
 
     public DownloadManager() {
         setTitle("Download Manager");
-        setSize(1000, 600);
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null); // Center the frame
 
-        // Using Nimbus look and feel
+        // Use Nimbus look and feel
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        // Setting up menu
+        // Set up menu
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         fileMenu.setMnemonic(KeyEvent.VK_F);
@@ -36,7 +36,7 @@ public class DownloadManager extends JFrame implements Observer {
         menuBar.add(fileMenu);
         setJMenuBar(menuBar);
 
-        // Setting up add panel
+        // Set up add panel
         JPanel addPanel = new JPanel(new BorderLayout());
         addTextField = new JTextField();
         addPanel.add(addTextField, BorderLayout.CENTER);
@@ -44,14 +44,14 @@ public class DownloadManager extends JFrame implements Observer {
         addButton.addActionListener(e -> actionAdd());
         addPanel.add(addButton, BorderLayout.EAST);
 
-        // Setting up downloads panel
+        // Set up downloads panel
         tableModel = new DownloadsTableModel();
         table = new JTable(tableModel);
         table.setRowHeight(30); // Increase row height for better readability
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(600, 400));
 
-        // Setting up buttons panel
+        // Set up buttons panel
         JPanel buttonsPanel = new JPanel(new FlowLayout());
         pauseButton = new JButton("Pause");
         resumeButton = new JButton("Resume");
@@ -62,35 +62,29 @@ public class DownloadManager extends JFrame implements Observer {
         buttonsPanel.add(cancelButton);
         buttonsPanel.add(clearButton);
 
-        // Adding components to content pane
+        // Add components to content pane
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
         contentPane.add(addPanel, BorderLayout.NORTH);
         contentPane.add(scrollPane, BorderLayout.CENTER);
         contentPane.add(buttonsPanel, BorderLayout.SOUTH);
 
-        // Disabling buttons initially
+        // Disable buttons initially
         pauseButton.setEnabled(false);
         resumeButton.setEnabled(false);
         cancelButton.setEnabled(false);
         clearButton.setEnabled(false);
 
-        // Adding selection listener to table
+        // Add selection listener to table
         table.getSelectionModel().addListSelectionListener(e -> tableSelectionChanged());
-
-        // Adding action listeners to buttons
-        pauseButton.addActionListener(e -> actionPause());
-        resumeButton.addActionListener(e -> actionResume());
-        cancelButton.addActionListener(e -> actionCancel());
-        clearButton.addActionListener(e -> actionClear());
     }
 
-    // Exiting this program.
+    // Exit this program.
     private void actionExit() {
         System.exit(0);
     }
 
-    // Adding a new download.
+    // Add a new download.
     private void actionAdd() {
         URL verifiedUrl = verifyUrl(addTextField.getText());
         if (verifiedUrl != null) {
@@ -103,13 +97,13 @@ public class DownloadManager extends JFrame implements Observer {
         }
     }
 
-    // Verifying download URL.
+    // Verify download URL.
     private URL verifyUrl(String url) {
         // Only allow HTTP URLs.
         if (!url.toLowerCase().startsWith("http://") && !url.toLowerCase().startsWith("https://"))
             return null;
 
-        // Verifying format of URL.
+        // Verify format of URL.
         URL verifiedUrl = null;
         try {
             verifiedUrl = new URL(url);
@@ -117,7 +111,7 @@ public class DownloadManager extends JFrame implements Observer {
             return null;
         }
 
-        // Making sure URL specifies a file.
+        // Make sure URL specifies a file.
         if (verifiedUrl.getFile().length() < 2)
             return null;
 
@@ -126,10 +120,17 @@ public class DownloadManager extends JFrame implements Observer {
 
     // Called when table row selection changes.
     private void tableSelectionChanged() {
+        /* Unregister from receiving notifications
+           from the last selected download. */
         if (selectedDownload != null)
             selectedDownload.deleteObserver(DownloadManager.this);
+
+        /* If not in the middle of clearing a download,
+           set the selected download and register to
+           receive notifications from it. */
         if (!clearing) {
-            selectedDownload = tableModel.getDownload(table.getSelectedRow());
+            selectedDownload =
+                    tableModel.getDownload(table.getSelectedRow());
             selectedDownload.addObserver(DownloadManager.this);
             updateButtons();
         }
@@ -162,10 +163,8 @@ public class DownloadManager extends JFrame implements Observer {
         updateButtons();
     }
 
-    /*
-     * Update each button's state based off of the
-     * currently selected download's status.
-     */
+    /* Update each button's state based off of the
+       currently selected download's status. */
     private void updateButtons() {
         if (selectedDownload != null) {
             int status = selectedDownload.getStatus();
@@ -188,13 +187,14 @@ public class DownloadManager extends JFrame implements Observer {
                     cancelButton.setEnabled(false);
                     clearButton.setEnabled(true);
                     break;
-                default:
+                default: // COMPLETE or CANCELLED
                     pauseButton.setEnabled(false);
                     resumeButton.setEnabled(false);
                     cancelButton.setEnabled(false);
                     clearButton.setEnabled(true);
             }
         } else {
+            // No download is selected in table.
             pauseButton.setEnabled(false);
             resumeButton.setEnabled(false);
             cancelButton.setEnabled(false);
@@ -202,11 +202,15 @@ public class DownloadManager extends JFrame implements Observer {
         }
     }
 
+    /* Update is called when a Download notifies its
+       observers of any changes. */
     public void update(Observable o, Object arg) {
+        // Update buttons if the selected download has changed.
         if (selectedDownload != null && selectedDownload.equals(o))
             updateButtons();
     }
 
+    // Run the Download Manager.
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             DownloadManager manager = new DownloadManager();
