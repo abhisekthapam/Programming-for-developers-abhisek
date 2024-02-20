@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8ef37f8c-d215-4e84-bf58-37c455ef318d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Question1a.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question1a.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question1b.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question1b.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question2a.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question2a.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question2b.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question2b.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question3a.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question3a.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question3b.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question3b.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question4a.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question4a.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question4b.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question4b.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question5a.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question5a.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question5b.java" beforeDir="false" afterPath="$PROJECT_DIR$/Question5b.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/FileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/Graph.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/GraphADT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/SocialNetwork.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/SocialNetworkADT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/saveLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Question7/SocialNetworkVisualizer/out/production/SocialNetworkVisualizer/application/saveLog.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Question7/SocialNetworkVisualizer" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2cdboCK6cNSFuL3bKWCxuzJUunP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ef37f8c-d215-4e84-bf58-37c455ef318d" name="Changes" comment="" />
+      <created>1708444576180</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708444576180</updated>
+      <workItem from="1708444577891" duration="44000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

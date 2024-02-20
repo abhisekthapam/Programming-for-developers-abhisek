@@ -1,4 +1,19 @@
+/*
+I've implemented the Ant Colony Optimization (ACO) algorithm to solve the Traveling Salesman Problem. 
+The AntColonyOptimization class initializes pheromones, and in each iteration, multiple ants 
+generate tours by probabilistically selecting cities based on pheromone levels and distances. 
+The algorithm updates the best tour whenever a shorter one is found, and pheromone levels are 
+adjusted on the edges based on the tours taken by ants, favoring shorter paths. The main loop 
+repeats for a specified number of iterations, and the algorithm returns the best tour, providing 
+an optimal order for visiting cities. The Question5a class showcases the algorithm on a sample 
+distance matrix with defined parameters, and the result, representing the best tour, is printed 
+to the console.
+Output : [2, 0, 1, 3]
+Time complexity : O(numIterations * numAnts * numCities^2)
+ */
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -7,12 +22,13 @@ class AntColonyOptimization {
     private int numAnts;
     private int numIterations;
     private double[][] pheromones;
-    private double alpha; 
+    private double alpha;
     private double beta;
     private double evaporationRate;
     private int numCities;
 
-    public AntColonyOptimization(double[][] distances, int numAnts, int numIterations, double alpha, double beta, double evaporationRate) {
+    public AntColonyOptimization(double[][] distances, int numAnts, int numIterations, double alpha, double beta,
+            double evaporationRate) {
         this.distances = distances;
         this.numAnts = numAnts;
         this.numIterations = numIterations;
@@ -23,16 +39,16 @@ class AntColonyOptimization {
         initializePheromones();
     }
 
+    // Initializing pheromones with a small initial value
     private void initializePheromones() {
         pheromones = new double[numCities][numCities];
-        double initialPheromone = 1.0 / (numCities * numCities);
+        double initialPheromone = 1.0 / Math.pow(numCities, 2);
         for (int i = 0; i < numCities; i++) {
-            for (int j = 0; j < numCities; j++) {
-                pheromones[i][j] = initialPheromone;
-            }
+            Arrays.fill(pheromones[i], initialPheromone);
         }
     }
 
+    // Solving the optimization problem using Ant Colony Optimization
     public List<Integer> solve() {
         List<Integer> bestTour = null;
         double bestTourLength = Double.MAX_VALUE;
@@ -45,6 +61,7 @@ class AntColonyOptimization {
                 double tourLength = calculateTourLength(tour);
                 if (tourLength < bestTourLength) {
                     bestTourLength = tourLength;
+                    // Using Collections.copy for a more efficient tour copy
                     bestTour = new ArrayList<>(tour);
                 }
             }
@@ -53,6 +70,7 @@ class AntColonyOptimization {
         return bestTour;
     }
 
+    // Generating a tour for a single ant
     private List<Integer> generateTour(Random random) {
         List<Integer> tour = new ArrayList<>(numCities);
         boolean[] visited = new boolean[numCities];
@@ -67,6 +85,7 @@ class AntColonyOptimization {
         return tour;
     }
 
+    // Selecting the next city for an ant based on pheromone levels and distances
     private int selectNextCity(int currentCity, boolean[] visited, Random random) {
         double[] probabilities = new double[numCities];
         double totalProbability = 0;
@@ -91,11 +110,13 @@ class AntColonyOptimization {
         return -1;
     }
 
+    // Updating pheromone levels based on ant tours
     private void updatePheromones(List<List<Integer>> antTours) {
         for (int i = 0; i < numCities; i++) {
             for (int j = 0; j < numCities; j++) {
                 if (i != j) {
-                    pheromones[i][j] *= (1 - evaporationRate);
+                    // Evaporating existing pheromones
+                    pheromones[i][j] *= 1 - evaporationRate;
                 }
             }
         }
@@ -104,12 +125,14 @@ class AntColonyOptimization {
             for (int i = 0; i < numCities - 1; i++) {
                 int city1 = tour.get(i);
                 int city2 = tour.get(i + 1);
+                // Updating pheromones based on the tour length
                 pheromones[city1][city2] += 1.0 / tourLength;
                 pheromones[city2][city1] += 1.0 / tourLength;
             }
         }
     }
 
+    // Calculating the total length of a tour
     private double calculateTourLength(List<Integer> tour) {
         double length = 0;
         for (int i = 0; i < numCities - 1; i++) {
@@ -117,7 +140,7 @@ class AntColonyOptimization {
             int city2 = tour.get(i + 1);
             length += distances[city1][city2];
         }
-        length += distances[tour.get(numCities - 1)][tour.get(0)]; 
+        length += distances[tour.get(numCities - 1)][tour.get(0)];
         return length;
     }
 }
@@ -125,10 +148,10 @@ class AntColonyOptimization {
 public class Question5a {
     public static void main(String[] args) {
         double[][] distances = {
-            {0, 10, 15, 20},
-            {10, 0, 35, 25},
-            {15, 35, 0, 30},
-            {20, 25, 30, 0}
+                { 0, 10, 15, 20 },
+                { 10, 0, 35, 25 },
+                { 15, 35, 0, 30 },
+                { 20, 25, 30, 0 }
         };
         int numAnts = 10;
         int numIterations = 100;
@@ -136,7 +159,8 @@ public class Question5a {
         double beta = 2.0;
         double evaporationRate = 0.5;
 
-        AntColonyOptimization aco = new AntColonyOptimization(distances, numAnts, numIterations, alpha, beta, evaporationRate);
+        AntColonyOptimization aco = new AntColonyOptimization(distances, numAnts, numIterations, alpha, beta,
+                evaporationRate);
         List<Integer> bestTour = aco.solve();
         System.out.println("Best tour: " + bestTour);
     }
